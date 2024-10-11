@@ -1,4 +1,5 @@
-using Freelancely.Data;
+
+using Freelancely.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

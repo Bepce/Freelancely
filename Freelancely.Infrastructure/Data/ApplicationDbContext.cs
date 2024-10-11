@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Freelancely.Data
+namespace Freelancely.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
