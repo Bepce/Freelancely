@@ -16,6 +16,8 @@ namespace Freelancely.Infrastructure.Data.SeedData
 
         public Post SecoundPost { get; set; }
 
+        public Post ThirdPost { get; set; }
+
         public SeedData()
         {
             SeedUser();
@@ -56,6 +58,15 @@ namespace Freelancely.Infrastructure.Data.SeedData
                 Title = "Test2",
                 Description = "This is 2nd a test",
                 PricePerHour = 30,
+                UserId = FirstUser.Id,
+            };
+
+            ThirdPost = new Post()
+            {
+                Id = 3,
+                Title = "Photographer",
+                Description = "Photographer looking for work in Sofia, Bulgaria",
+                PricePerHour = 50,
                 UserId = FirstUser.Id,
             };
         }
