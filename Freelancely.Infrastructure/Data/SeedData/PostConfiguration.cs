@@ -15,7 +15,7 @@ namespace Freelancely.Infrastructure.Data.SeedData
         {
             var data = new SeedData();
 
-            builder.HasData(new Post[] { data.FirstPost, data.SecoundPost });
+            builder.HasData(new Post[] { data.FirstPost, data.SecoundPost, data.ThirdPost });
         }
     }
 }
