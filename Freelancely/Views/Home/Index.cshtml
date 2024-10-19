@@ -4,9 +4,9 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    @if (User.Identity.IsAuthenticated)
+    @if (User?.Identity?.IsAuthenticated ?? false)
     {
-        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Posts">Explore freelance services.</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="Index">Explore freelance services.</a>
     }
     else
     {

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Freelancely.Core.Models.Post.PostIndexServiceModel>
+
+@{
+    ViewData["Title"] = "Posts";
+    var posts = Model.ToList();
+}
+
+<h2 class="text-center">Posts</h2>
+
+@if (!posts.Any())
+{
+    <h5>No posts here</h5>
+
+    @if (User?.Identity?.IsAuthenticated ?? false)
+    {
+        <a asp-controller="Post" asp-action="Add" class="btn-close-white" role="button">Add Post</a>
+    }
+}
+
+<div class="row">
+    
+        @for (int i = 0; i < posts.Count(); i++)
+        {
+            var post = posts[i];
+            <div class="card" style="width: 18rem; margin: 6px;">
+                <div class="card-body">
+                    <h5 class="card-title">@post.PostTitle</h5>
+                    <p class="card-text">@post.PostBody</p>
+                    <div class="card-group" role="group">
+                        <h6>@post.Price $ per hour</h6>
+                        <h6>User: @post.PostUserName</h6>
+                    </div>
+                </div>
+            </div>
+        }
+    
+</div>
+
