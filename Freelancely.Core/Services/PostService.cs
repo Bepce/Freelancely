@@ -31,5 +31,21 @@ namespace Freelancely.Core.Services
                 })
                 .ToListAsync();
         }
+
+        public async Task<PostIndexServiceModel?> PostById(int id)
+        {
+            return await repository
+                .AllReadOnly<Post>()
+                .Where(p => p.Id == id)
+                .Select(p => new PostIndexServiceModel
+                {
+                    Id = p.Id,
+                    PostTitle = p.Title,
+                    PostBody = p.Description,
+                    Price = p.PricePerHour,
+                    PostUserName = p.User.UserName
+                })
+                .FirstOrDefaultAsync();
+        }
     }
 }

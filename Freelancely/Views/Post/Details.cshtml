@@ -1,0 +1,15 @@
+﻿@model Freelancely.Core.Models.Post.PostIndexServiceModel
+
+@{
+    ViewData["Title"] = "Posts";
+}
+<div style="max-width: fit-content; margin-left: auto; margin-right:auto">
+    <div class="card" style="width: stretch">
+        <div class="card-body">
+            <h5 class="card-title">@Model.PostTitle</h5>
+            <h6 class="card-subtitle">@Model.PostUserName</h6>
+            <p class="card-text">@Model.PostBody</p>
+            <p class="card-text;">@Model.Price$ per hr.</p>
+        </div>
+    </div>
+</div>

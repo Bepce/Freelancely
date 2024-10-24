@@ -5,5 +5,7 @@ namespace Freelancely.Core.Contracts.Post
     public interface IPostService 
     {
         Task<IEnumerable<PostIndexServiceModel>> LastThreePosts();
+
+        Task<PostIndexServiceModel?> PostById(int id);
     }
 }
