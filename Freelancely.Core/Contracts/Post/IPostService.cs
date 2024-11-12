@@ -7,5 +7,7 @@ namespace Freelancely.Core.Contracts.Post
         Task<IEnumerable<PostIndexServiceModel>> LastThreePosts();
 
         Task<PostIndexServiceModel?> PostById(int id);
+
+        Task<int> CreatePostAsync(CreatePostFormModel model, string userId);
     }
 }

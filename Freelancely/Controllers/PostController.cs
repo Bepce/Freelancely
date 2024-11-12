@@ -1,6 +1,10 @@
 ﻿using Freelancely.Core.Contracts.Post;
+using Freelancely.Core.Models.Post;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
 
 namespace Freelancely.Controllers
 {
@@ -18,7 +22,7 @@ namespace Freelancely.Controllers
             postService = _postService;
         }
 
-        [Authorize]
+        
         public async Task<IActionResult> Index()
         {
             var model = await postService.LastThreePosts();
@@ -37,6 +41,33 @@ namespace Freelancely.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]  
+        public async Task<IActionResult> Create([FromForm]CreatePostFormModel createFormModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(createFormModel);
+            }
+
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null) 
+            {
+                return Unauthorized();
+            }
+
+            var newPostId = await postService.CreatePostAsync(createFormModel, userId);
+
+            return RedirectToAction(nameof(Details), new {id = newPostId});
         }
     }
 }

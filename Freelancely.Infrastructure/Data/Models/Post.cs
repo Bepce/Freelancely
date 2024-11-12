@@ -20,6 +20,7 @@ namespace Freelancely.Infrastructure.Data.Models
 
         [Required]
         [Column(TypeName = PostPricePerHour)]
+        [Range(0.01, 999.99)]
         public decimal? PricePerHour { get; set; }
 
         [Required]

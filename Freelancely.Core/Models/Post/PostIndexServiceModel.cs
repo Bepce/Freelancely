@@ -1,7 +1,10 @@
-﻿namespace Freelancely.Core.Models.Post
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Freelancely.Core.Models.Post
 {
     public class PostIndexServiceModel
     {
+        
         public int Id { get; set; }
 
         public string? PostTitle { get; set; } = string.Empty;

@@ -15,6 +15,22 @@ namespace Freelancely.Core.Services
             repository = _repository;
         }
 
+        public async Task<int> CreatePostAsync(CreatePostFormModel model, string userId)
+        {
+            Post post = new Post
+            {
+                Title = model.Title,
+                Description = model.Description,
+                PricePerHour = model.Price,
+                UserId = userId
+            };
+
+            await repository.AddAsync(post);
+            await repository.SaveChagnesAsync();
+
+            return post.Id;
+        }
+
         public async Task<IEnumerable<PostIndexServiceModel>> LastThreePosts()
         {
             return await repository
