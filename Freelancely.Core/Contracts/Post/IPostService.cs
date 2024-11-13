@@ -9,5 +9,7 @@ namespace Freelancely.Core.Contracts.Post
         Task<PostIndexServiceModel?> PostById(int id);
 
         Task<int> CreatePostAsync(PostFormModel model, string userId);
+
+        Task<bool> IsPoster(int postId, string  userId);
     }
 }

@@ -31,6 +31,16 @@ namespace Freelancely.Core.Services
             return post.Id;
         }
 
+        public async Task<bool> IsPoster(int postId, string userId)
+        {
+            return await repository
+                .AllReadOnly<Post>()
+                .Where(post => post.Id == postId)
+                .Where(post => post.UserId == userId)
+                .AnyAsync();
+                                    
+        }
+
         public async Task<IEnumerable<PostIndexServiceModel>> LastThreePosts()
         {
             return await repository

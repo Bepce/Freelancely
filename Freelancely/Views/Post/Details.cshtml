@@ -1,4 +1,5 @@
 ﻿@model PostIndexServiceModel
+@inject IPostService postService
 
 @{
     ViewData["Title"] = "Posts";
@@ -11,5 +12,9 @@
             <p class="card-text">@Model.PostBody</p>
             <p class="card-text;">@Model.Price$ per hr.</p>
         </div>
+        @if (await postService.IsPoster(Model.Id, User.Id()))
+        {
+            <button type="button" class="btn btn-outline-dark">Edit</button>
+        }
     </div>
 </div>
