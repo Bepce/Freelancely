@@ -1,4 +1,4 @@
-﻿@model CreatePostFormModel
+﻿@model PostFormModel
 <h2 class="text-center">Create new post</h2>
 
 @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"] != null)
@@ -6,27 +6,8 @@
     <div class="alert alert-danger" role="alert"> @ViewData.ModelState["Error"].Errors.First().ErrorMessage </div>
 }
 
-<form method="post">
-    <div class="form-group">
-        <label for="titleInput">Title</label>
-        <input asp-for="Title" type="text" class="form-control" id="titleInput" placeholder="Post title" />
-        <span asp-validation-for="Title"></span>
-    </div>
-    <div class="form-group">
-        <label for="descriptionInput">Description</label>
-        <textarea asp-for="Description" class="form-control" id="descriptionInput" rows="3"></textarea>
-        <span asp-validation-for="Description"></span>
-    </div>
-    <div class="form-group">
-        <label for="priceInput">Price per hour</label>
-        <input asp-for="Price" type="text" class="form-control" id="priceInput" placeholder="10.00" />
-        <span asp-validation-for="Price"></span>
-    </div>
-    <div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</form>
+<partial name="_PostFormPartial" />
 
-@* @section Scrips {
-    <partial name="_ValidationScriptsPartial" />
-} *@
+@section scrips {
+    <partial name="_validationscriptspartial" />
+}

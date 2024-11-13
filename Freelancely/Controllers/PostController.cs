@@ -51,7 +51,7 @@ namespace Freelancely.Controllers
         }
 
         [HttpPost]  
-        public async Task<IActionResult> Create([FromForm]CreatePostFormModel createFormModel)
+        public async Task<IActionResult> Create([FromForm]PostFormModel createFormModel)
         {
             if (!ModelState.IsValid)
             {

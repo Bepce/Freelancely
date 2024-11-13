@@ -4,7 +4,7 @@ using static Freelancely.Infrastructure.Constants.DataConstants;
 
 namespace Freelancely.Core.Models.Post
 {
-    public class CreatePostFormModel
+    public class PostFormModel
     {
         [Required(ErrorMessage = RequiredMessage)]
         [StringLength(PostTitleMaxLength, MinimumLength = PostTitleMinLength, ErrorMessage = LenghtMessage)]
