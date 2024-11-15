@@ -41,12 +41,12 @@ namespace Freelancely.Core.Services
                                     
         }
 
-        public async Task<IEnumerable<PostIndexServiceModel>> LastThreePosts()
+        public async Task<IEnumerable<PostIndexServiceModel>> LastNinePosts()
         {
             return await repository
                 .AllReadOnly<Post>()
                 .OrderByDescending(p => p.Id)
-                .Take(3)
+                .Take(9)
                 .Select(p => new PostIndexServiceModel
                 {
                     Id = p.Id,
