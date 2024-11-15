@@ -69,9 +69,24 @@ namespace Freelancely.Core.Services
                     PostTitle = p.Title,
                     PostBody = p.Description,
                     Price = p.PricePerHour,
-                    PostUserName = p.User.UserName
+                    PostUserName = p.User.UserName,
+                    postUserId = p.UserId
                 })
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task UpdatePost(PostFormModel model, int id)
+        {
+            var post = await repository.GetByIdAsync<Post>(id);
+
+            if (post != null)
+            {
+                post.Title = model.Title;
+                post.Description = model.Description;
+                post.PricePerHour = model.Price;
+
+                await repository.SaveChagnesAsync();
+            }
         }
     }
 }

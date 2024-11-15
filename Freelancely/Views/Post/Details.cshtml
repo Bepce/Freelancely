@@ -14,7 +14,7 @@
         </div>
         @if (await postService.IsPoster(Model.Id, User.Id()))
         {
-            <button type="button" class="btn btn-outline-dark">Edit</button>
+            <a asp-controller="Post" asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-outline-dark">Edit</a>
         }
     </div>
 </div>

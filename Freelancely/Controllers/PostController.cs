@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace Freelancely.Controllers
 {
-    
+
     public class PostController : Controller
     {
         private readonly ILogger<PostController> _logger;
@@ -22,7 +22,7 @@ namespace Freelancely.Controllers
             postService = _postService;
         }
 
-        
+
         public async Task<IActionResult> Index()
         {
             var model = await postService.LastThreePosts();
@@ -30,12 +30,12 @@ namespace Freelancely.Controllers
             return View(model);
         }
 
-        [HttpGet]        
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             var model = await postService.PostById(id);
 
-            if (model == null) 
+            if (model == null)
             {
                 return BadRequest();
             }
@@ -50,24 +50,77 @@ namespace Freelancely.Controllers
             return View();
         }
 
-        [HttpPost]  
-        public async Task<IActionResult> Create([FromForm]PostFormModel createFormModel)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] PostFormModel createFormModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(createFormModel);
             }
 
-            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string? userId = User.Id();
 
-            if (userId == null) 
+            if (userId == null)
             {
                 return Unauthorized();
             }
 
             var newPostId = await postService.CreatePostAsync(createFormModel, userId);
 
-            return RedirectToAction(nameof(Details), new {id = newPostId});
+            return RedirectToAction(nameof(Details), new { id = newPostId });
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id)
+        {
+            string? userId = User.Id();
+
+            var post = await postService.PostById(id);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            if (userId != post.postUserId)
+            {
+                return Unauthorized();
+            }
+
+            var postEditForm = new PostFormModel
+            {
+                Title = post.PostTitle,
+                Description = post.PostBody,
+                Price = post.Price
+            };
+
+            return View(postEditForm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(PostFormModel model, int id)
+        {
+            var post = await postService.PostById(id);
+
+            if (post == null)
+            {
+                return BadRequest();
+            }
+
+            if (post.postUserId != User.Id())
+            {
+                return Unauthorized();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            
+            await postService.UpdatePost(model, id);
+
+            return RedirectToAction(nameof(Details), new { id });
         }
     }
 }
