@@ -18,7 +18,7 @@ namespace Freelancely.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }
