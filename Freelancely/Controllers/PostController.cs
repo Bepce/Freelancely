@@ -140,6 +140,8 @@ namespace Freelancely.Controllers
 
             await postService.DeletePostAsync(id);
 
+            TempData["Delete message"] = "The post has been deleted.";
+
             return RedirectToAction(nameof(Index));
         }
     }

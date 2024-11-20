@@ -9,26 +9,36 @@
 
 @if (!posts.Any())
 {
-    <h5>No posts have been made yet.</h5>    
+    <h5>No posts have been made yet.</h5>
 }
 
+@if (TempData["Delete message"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">       
+        @TempData["Delete message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+ }
+
 <div class="row ">
-        @for (int i = 0; i < posts.Count(); i++)
-        {
-            var post = posts[i];
-            <div class="card" style="width: 32%; margin: 6px;">
-                <div class="card-body">
-                    <h5 class="card-title">@post.PostTitle</h5>
-                    <p class="card-text">@post.PostBody</p>
-                    <div class="card-group" role="group">
-                        <h6>@post.Price $ per hour</h6>
-                        <h6>User: @post.PostUserName</h6>
-                    </div>
-                    <div>
-                        <a asp-controller="Post" asp-action="Details" asp-route-id="@post.Id" class="btn-outline-dark" role="button">Details</a>
-                    </div>
+    @for (int i = 0; i < posts.Count(); i++)
+    {
+        var post = posts[i];
+        <div class="card" style="width: 32%; margin: 6px;">
+            <div class="card-body">
+                <h5 class="card-title">@post.PostTitle</h5>
+                <p class="card-text">@post.PostBody</p>
+                <div class="card-group" role="group">
+                    <h6>@post.Price $ per hour</h6>
+                </div>
+                <div class="card-group" role="group">
+                    <h6>User: @post.PostUserName</h6>
+                </div>
+                <div>
+                    <a asp-controller="Post" asp-action="Details" asp-route-id="@post.Id" class="btn-outline-dark" role="button">Details</a>
                 </div>
             </div>
-        }
+        </div>
+    }
 </div>
 
