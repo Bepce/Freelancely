@@ -12,6 +12,8 @@ namespace Freelancely.Core.Contracts.Post
 
         Task<bool> IsPoster(int postId, string  userId);
 
-        Task UpdatePost(PostFormModel model, int id);
+        Task UpdatePostAsync(PostFormModel model, int id);
+
+        Task DeletePostAsync(int postId);
     }
 }

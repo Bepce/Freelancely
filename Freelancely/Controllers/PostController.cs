@@ -118,9 +118,29 @@ namespace Freelancely.Controllers
                 return View(model);
             }
             
-            await postService.UpdatePost(model, id);
+            await postService.UpdatePostAsync(model, id);
 
             return RedirectToAction(nameof(Details), new { id });
+        }
+
+        
+        public async Task<IActionResult> Delete(int id)
+        {
+            var post = await postService.PostById(id);
+
+            if (post == null)
+            {
+                return BadRequest();
+            }
+
+            if (post.postUserId != User.Id())
+            {
+                return Unauthorized();
+            }
+
+            await postService.DeletePostAsync(id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

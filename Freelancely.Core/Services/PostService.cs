@@ -31,6 +31,18 @@ namespace Freelancely.Core.Services
             return post.Id;
         }
 
+        public async Task DeletePostAsync(int postId)
+        {
+            var post = await repository.GetByIdAsync<Post>(postId);
+
+            if (post != null && post.IsDeleted != true)
+            {
+                post.IsDeleted = true;
+
+                await repository.SaveChagnesAsync();
+            }
+        }
+
         public async Task<bool> IsPoster(int postId, string userId)
         {
             return await repository
@@ -38,13 +50,14 @@ namespace Freelancely.Core.Services
                 .Where(post => post.Id == postId)
                 .Where(post => post.UserId == userId)
                 .AnyAsync();
-                                    
+
         }
 
         public async Task<IEnumerable<PostIndexServiceModel>> LastNinePosts()
         {
             return await repository
                 .AllReadOnly<Post>()
+                .Where(p => p.IsDeleted == false)
                 .OrderByDescending(p => p.Id)
                 .Take(9)
                 .Select(p => new PostIndexServiceModel
@@ -75,7 +88,7 @@ namespace Freelancely.Core.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task UpdatePost(PostFormModel model, int id)
+        public async Task UpdatePostAsync(PostFormModel model, int id)
         {
             var post = await repository.GetByIdAsync<Post>(id);
 
@@ -88,5 +101,6 @@ namespace Freelancely.Core.Services
                 await repository.SaveChagnesAsync();
             }
         }
+
     }
 }
