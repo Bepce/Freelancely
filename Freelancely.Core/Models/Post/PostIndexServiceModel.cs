@@ -7,9 +7,9 @@ namespace Freelancely.Core.Models.Post
         
         public int Id { get; set; }
 
-        public string? PostTitle { get; set; } = string.Empty;
+        public string PostTitle { get; set; } = string.Empty;
 
-        public string? PostBody { get; set; } = string.Empty;
+        public string PostBody { get; set; } = string.Empty;
 
         public decimal? Price { get; set; }
 
