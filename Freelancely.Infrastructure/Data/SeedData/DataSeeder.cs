@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelancely.Infrastructure.Data.SeedData
 {
-    internal class SeedData
+    internal class DataSeeder
     {
         public IdentityUser FirstUser { get; set; }
 
@@ -18,7 +18,7 @@ namespace Freelancely.Infrastructure.Data.SeedData
 
         public Post ThirdPost { get; set; }
 
-        public SeedData()
+        public DataSeeder()
         {
             SeedUser();
             SeedPost();

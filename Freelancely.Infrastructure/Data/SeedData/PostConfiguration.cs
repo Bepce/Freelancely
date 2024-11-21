@@ -13,7 +13,7 @@ namespace Freelancely.Infrastructure.Data.SeedData
     {
         public void Configure(EntityTypeBuilder<Post> builder)
         {
-            var data = new SeedData();
+            var data = new DataSeeder();
 
             builder.HasData(new Post[] { data.FirstPost, data.SecoundPost, data.ThirdPost });
         }

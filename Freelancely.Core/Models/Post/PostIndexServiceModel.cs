@@ -11,9 +11,9 @@ namespace Freelancely.Core.Models.Post
 
         public string PostBody { get; set; } = string.Empty;
 
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
-        public string? PostUserName = string.Empty;
+        public string PostUserName = string.Empty;
 
         public string postUserId { get; set; } = string.Empty;
     }

@@ -8,11 +8,11 @@ namespace Freelancely.Core.Services
 {
     public class PostService : IPostService
     {
-        private readonly IRepository repository;
+        private readonly IRepository _repository;
 
-        public PostService(IRepository _repository)
+        public PostService(IRepository repository)
         {
-            repository = _repository;
+            _repository = repository;
         }
 
         public async Task<int> CreatePostAsync(PostFormModel model, string userId)
@@ -25,37 +25,35 @@ namespace Freelancely.Core.Services
                 UserId = userId
             };
 
-            await repository.AddAsync(post);
-            await repository.SaveChagnesAsync();
+            await _repository.AddAsync(post);
+            await _repository.SaveChagnesAsync();
 
             return post.Id;
         }
 
         public async Task DeletePostAsync(int postId)
         {
-            var post = await repository.GetByIdAsync<Post>(postId);
+            var post = await _repository.GetByIdAsync<Post>(postId);
 
             if (post != null && post.IsDeleted != true)
             {
                 post.IsDeleted = true;
 
-                await repository.SaveChagnesAsync();
+                await _repository.SaveChagnesAsync();
             }
         }
 
         public async Task<bool> IsPoster(int postId, string userId)
         {
-            return await repository
+            return await _repository
                 .AllReadOnly<Post>()
-                .Where(post => post.Id == postId)
-                .Where(post => post.UserId == userId)
-                .AnyAsync();
+                .AnyAsync(post => post.Id == postId && post.UserId == userId);
 
         }
 
         public async Task<IEnumerable<PostIndexServiceModel>> LastNinePosts()
         {
-            return await repository
+            return await _repository
                 .AllReadOnly<Post>()
                 .Where(p => p.IsDeleted == false)
                 .OrderByDescending(p => p.Id)
@@ -73,7 +71,7 @@ namespace Freelancely.Core.Services
 
         public async Task<PostIndexServiceModel?> PostById(int id)
         {
-            return await repository
+            return await _repository
                 .AllReadOnly<Post>()
                 .Where(p => p.Id == id)
                 .Select(p => new PostIndexServiceModel
@@ -90,7 +88,7 @@ namespace Freelancely.Core.Services
 
         public async Task UpdatePostAsync(PostFormModel model, int id)
         {
-            var post = await repository.GetByIdAsync<Post>(id);
+            var post = await _repository.GetByIdAsync<Post>(id);
 
             if (post != null)
             {
@@ -98,7 +96,7 @@ namespace Freelancely.Core.Services
                 post.Description = model.Description;
                 post.PricePerHour = model.Price;
 
-                await repository.SaveChagnesAsync();
+                await _repository.SaveChagnesAsync();
             }
         }
 
