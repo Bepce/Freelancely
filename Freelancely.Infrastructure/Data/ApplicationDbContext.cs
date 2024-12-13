@@ -21,5 +21,8 @@ namespace Freelancely.Infrastructure.Data
         }
 
         public DbSet<Post> Posts { get; set; }
+
+        public DbSet<WorkIndustry> WorkIndustry { get; set; }
+
     }
 }
