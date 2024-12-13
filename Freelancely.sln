@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Freelancely", "Freelancely\Freelancely.csproj", "{23A3159B-0F0B-4AD7-AC50-35B7160F5236}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Freelancely.Core", "Freelancely.Core\Freelancely.Core.csproj", "{D6333B81-2A9E-412E-93C7-97518B27A8BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Freelancely.Core", "Freelancely.Core\Freelancely.Core.csproj", "{D6333B81-2A9E-412E-93C7-97518B27A8BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Freelancely.Infrastructure", "Freelancely.Infrastructure\Freelancely.Infrastructure.csproj", "{B27DABF7-9C80-4792-A40C-2B1D1A7E2133}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Freelancely.Infrastructure", "Freelancely.Infrastructure\Freelancely.Infrastructure.csproj", "{B27DABF7-9C80-4792-A40C-2B1D1A7E2133}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Freelancely.Web", "Freelancely\Freelancely.Web.csproj", "{5762C9CF-3142-47DB-82CA-15E8100B3915}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{23A3159B-0F0B-4AD7-AC50-35B7160F5236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23A3159B-0F0B-4AD7-AC50-35B7160F5236}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23A3159B-0F0B-4AD7-AC50-35B7160F5236}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23A3159B-0F0B-4AD7-AC50-35B7160F5236}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D6333B81-2A9E-412E-93C7-97518B27A8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D6333B81-2A9E-412E-93C7-97518B27A8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6333B81-2A9E-412E-93C7-97518B27A8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{B27DABF7-9C80-4792-A40C-2B1D1A7E2133}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B27DABF7-9C80-4792-A40C-2B1D1A7E2133}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B27DABF7-9C80-4792-A40C-2B1D1A7E2133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5762C9CF-3142-47DB-82CA-15E8100B3915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5762C9CF-3142-47DB-82CA-15E8100B3915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5762C9CF-3142-47DB-82CA-15E8100B3915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5762C9CF-3142-47DB-82CA-15E8100B3915}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

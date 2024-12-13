@@ -3,6 +3,7 @@ using Freelancely.Core.Contracts.Post;
 using Freelancely.Core.Services;
 using Freelancely.Infrastructure.Common;
 using Freelancely.Infrastructure.Data;
+using Freelancely.Web.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +22,13 @@ builder.Services.AddScoped<IPostService, PostService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+ })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<IdentityOptions>(options =>
@@ -32,6 +38,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireUppercase = false;
     options.Password.RequireLowercase = false;
 });
+
 
 var app = builder.Build();
 
@@ -55,9 +62,17 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "Areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
 
-app.Run();
+    endpoints.MapDefaultControllerRoute();
+    endpoints.MapRazorPages();
+});
+
+await app.CreateAdminRoleAsync();
+
+await app.RunAsync();
