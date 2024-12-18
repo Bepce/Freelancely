@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Freelancely.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 using static Freelancely.Web.Areas.Admin.AdminConstants;
 
@@ -11,7 +12,7 @@ namespace Freelancely.Web.Extensions
             using var scoupedServices = app.ApplicationServices.CreateScope();
 
             var services = scoupedServices.ServiceProvider;
-            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
             if (userManager != null && roleManager != null && await roleManager.RoleExistsAsync(AdminRoleName) == false)

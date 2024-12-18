@@ -4,6 +4,7 @@ using Freelancely.Core.Contracts.WorkIndustry;
 using Freelancely.Core.Services;
 using Freelancely.Infrastructure.Common;
 using Freelancely.Infrastructure.Data;
+using Freelancely.Infrastructure.Data.Models;
 using Freelancely.Web.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
@@ -24,7 +25,7 @@ builder.Services.AddScoped<IWorkIdustryService, WorkIndustryService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = true;
  })

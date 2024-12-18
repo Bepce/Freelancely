@@ -1,5 +1,4 @@
 ﻿using Freelancely.Infrastructure.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -10,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace Freelancely.Infrastructure.Data.SeedData
 {
-    internal class UserConfiguraiton : IEntityTypeConfiguration<ApplicationUser>
+    public class EducationConfiguration : IEntityTypeConfiguration<Education>
     {
-        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+        public void Configure(EntityTypeBuilder<Education> builder)
         {
-            var data = new DataSeeder();
-
-            builder.HasData(new ApplicationUser[] { data.FirstUser });
+            
         }
     }
 }

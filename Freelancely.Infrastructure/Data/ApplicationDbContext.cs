@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Freelancely.Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -16,11 +16,17 @@ namespace Freelancely.Infrastructure.Data
         {
             builder.ApplyConfiguration(new UserConfiguraiton());
             builder.ApplyConfiguration(new PostConfiguration());
+            builder.ApplyConfiguration(new ReviewConfiguration());
+            builder.ApplyConfiguration(new EducationConfiguration());
 
             base.OnModelCreating(builder);
         }
 
         public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
+
+        public DbSet<Education> Educations { get; set; }
 
         public DbSet<WorkIndustry> WorkIndustry { get; set; }
 

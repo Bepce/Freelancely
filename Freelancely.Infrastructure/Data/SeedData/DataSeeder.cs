@@ -11,7 +11,7 @@ namespace Freelancely.Infrastructure.Data.SeedData
 {
     internal class DataSeeder
     {
-        public IdentityUser FirstUser { get; set; }
+        public ApplicationUser FirstUser { get; set; }
 
         public Post FirstPost { get; set; }
 
@@ -27,9 +27,9 @@ namespace Freelancely.Infrastructure.Data.SeedData
 
         private void SeedUser()
         {
-            var hasher = new PasswordHasher<IdentityUser>();
+            var hasher = new PasswordHasher<ApplicationUser>();
 
-            FirstUser = new IdentityUser()
+            FirstUser = new ApplicationUser()
             {
                 Id = "2680690b-1683-45cb-8a99-cf0f9a9258aa",
                 UserName = "first@free.com",
