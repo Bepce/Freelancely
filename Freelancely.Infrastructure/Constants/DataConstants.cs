@@ -13,5 +13,11 @@
         public const string PostPriceMinValue = "0.01";
 
         public const string PostPriceMaxValue = "999.99";
+
+        public const int WorkIndustryNameMinLength = 3;
+
+        public const int WorkIndustryNameMaxLength = 50;
+
+        public const int WorkIndustryDescriptionMaxLength = 250;
     }
 }

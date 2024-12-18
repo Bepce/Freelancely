@@ -1,5 +1,6 @@
 
 using Freelancely.Core.Contracts.Post;
+using Freelancely.Core.Contracts.WorkIndustry;
 using Freelancely.Core.Services;
 using Freelancely.Infrastructure.Common;
 using Freelancely.Infrastructure.Data;
@@ -19,6 +20,7 @@ builder.Services.AddScoped<IRepository, Repository>();
 
 //Application services
 builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<IWorkIdustryService, WorkIndustryService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

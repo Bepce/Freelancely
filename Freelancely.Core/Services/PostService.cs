@@ -44,7 +44,7 @@ namespace Freelancely.Core.Services
             }
         }
 
-        public async Task<bool> IsPoster(int postId, string userId)
+        public async Task<bool> IsCurrentUserPostOwnerAsync(int postId, string userId)
         {
             return await _repository
                 .AllReadOnly<Post>()
@@ -52,13 +52,13 @@ namespace Freelancely.Core.Services
 
         }
 
-        public async Task<IEnumerable<PostIndexServiceModel>> LastNinePosts()
+        public async Task<IEnumerable<PostIndexServiceModel>> GetPostsAsync(int count)
         {
             return await _repository
                 .AllReadOnly<Post>()
                 .Where(p => p.IsDeleted == false)
                 .OrderByDescending(p => p.Id)
-                .Take(9)
+                .Take(count)
                 .Select(p => new PostIndexServiceModel
                 {
                     Id = p.Id,

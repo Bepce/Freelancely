@@ -25,7 +25,7 @@ namespace Freelancely.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = await _postService.LastNinePosts();
+            var model = await _postService.GetPostsAsync(9);
 
             return View(model);
         }

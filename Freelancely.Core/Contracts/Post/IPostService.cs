@@ -4,13 +4,13 @@ namespace Freelancely.Core.Contracts.Post
 {
     public interface IPostService 
     {
-        Task<IEnumerable<PostIndexServiceModel>> LastNinePosts();
+        Task<IEnumerable<PostIndexServiceModel>> GetPostsAsync(int count);
 
         Task<PostIndexServiceModel?> PostById(int id);
 
         Task<int> CreatePostAsync(PostFormModel model, string userId);
 
-        Task<bool> IsPoster(int postId, string  userId);
+        Task<bool> IsCurrentUserPostOwnerAsync(int postId, string  userId);
 
         Task UpdatePostAsync(PostFormModel model, int id);
 

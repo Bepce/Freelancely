@@ -13,7 +13,7 @@
             <p class="card-text;">@Model.Price$ per hr.</p>
         </div>
         <div class="m-lg-auto">
-            @if (await postService.IsPoster(Model.Id, User.GetId()))
+            @if (await postService.IsCurrentUserPostOwnerAsync(Model.Id, User.GetId()))
             {
                 <a asp-controller="Post" asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-outline-dark">Edit</a>
                 <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>

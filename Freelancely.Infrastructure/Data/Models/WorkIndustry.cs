@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using static Freelancely.Infrastructure.Constants.DataConstants;
 
 namespace Freelancely.Infrastructure.Data.Models
 {
@@ -13,9 +9,11 @@ namespace Freelancely.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(WorkIndustryNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
+        [MaxLength(WorkIndustryDescriptionMaxLength)]
         public string Description { get; set; }
 
     }

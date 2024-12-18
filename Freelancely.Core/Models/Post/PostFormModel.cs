@@ -7,11 +7,11 @@ namespace Freelancely.Core.Models.Post
     public class PostFormModel
     {
         [Required(ErrorMessage = RequiredMessage)]
-        [StringLength(PostTitleMaxLength, MinimumLength = PostTitleMinLength, ErrorMessage = LenghtMessage)]
+        [StringLength(PostTitleMaxLength, MinimumLength = PostTitleMinLength, ErrorMessage = LenghtInRangeMessage)]
         public string Title { get; set; } = string.Empty;
 
         [Required(ErrorMessage = RequiredMessage)]
-        [StringLength(PostDescriptionMaxLength, ErrorMessage = DescriptionLenghtMessage)]
+        [StringLength(PostDescriptionMaxLength, ErrorMessage = LengthMessage)]
         public string Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = RequiredMessage)]
