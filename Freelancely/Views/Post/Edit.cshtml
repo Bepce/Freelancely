@@ -6,7 +6,7 @@
     <div class="alert alert-danger" role="alert"> @ViewData.ModelState["Error"].Errors.First().ErrorMessage </div>
 }
 
-<partial name="_PostFormPartial" />
+<partial name="_PostFormPartial" model="@Model"/>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

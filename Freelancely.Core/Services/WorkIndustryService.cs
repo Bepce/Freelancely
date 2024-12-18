@@ -1,4 +1,5 @@
 ﻿using Freelancely.Core.Contracts.WorkIndustry;
+using Freelancely.Core.Models.Post;
 using Freelancely.Core.Models.WorkIndustry;
 using Freelancely.Infrastructure.Common;
 using Freelancely.Infrastructure.Data.Models;
@@ -26,11 +27,15 @@ namespace Freelancely.Core.Services
             await _repository.SaveChagnesAsync();
         }
 
-        public async Task<IEnumerable<string>> GetWorkIndustryNames()
+        public async Task<IEnumerable<PostWorkIndustriesServiceModel>> GetWorkIndustries()
         {
             return await _repository
                 .All<WorkIndustry>()
-                .Select(x => x.Name)
+                .Select(c => new PostWorkIndustriesServiceModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                })
                 .ToListAsync();
         }
 

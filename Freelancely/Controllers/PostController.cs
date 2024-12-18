@@ -1,4 +1,5 @@
 ﻿using Freelancely.Core.Contracts.Post;
+using Freelancely.Core.Contracts.WorkIndustry;
 using Freelancely.Core.Models.Post;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,13 +14,17 @@ namespace Freelancely.Controllers
     {
         private readonly ILogger<PostController> _logger;
         private readonly IPostService _postService;
+        private readonly IWorkIdustryService _workIdustryService;
 
         public PostController(
             ILogger<PostController> logger,
-            IPostService postService)
+            IPostService postService,
+            IWorkIdustryService workIdustryService)
         {
             _logger = logger;
             _postService = postService;
+            _workIdustryService = workIdustryService;
+            
         }
 
 
@@ -45,9 +50,12 @@ namespace Freelancely.Controllers
 
         [HttpGet]
         [Authorize]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            return View(new PostFormModel
+            {
+                WorkIndustries = await _workIdustryService.GetWorkIndustries()
+            });
         }
 
         [HttpPost]
@@ -92,7 +100,8 @@ namespace Freelancely.Controllers
             {
                 Title = post.PostTitle,
                 Description = post.PostBody,
-                Price = post.Price
+                Price = post.Price,
+                WorkIndustries = await _workIdustryService.GetWorkIndustries()
             };
 
             return View(postEditForm);

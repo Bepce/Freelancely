@@ -13,9 +13,12 @@
     </div>
     <div class="form-group">
         <label for="priceInput">Industry</label>
-        <select asp-for="WorkIndustryId" class="custom-select" id="workIndustryInput">
-            <option selected>Choose industry</option>
-            
+       
+        <select asp-for="WorkIndustryId" class="form-select" id="workIndustryInput">         
+            @foreach (var industry in Model.WorkIndustries)
+            {
+                <option value="@industry.Id">@industry.Name</option>
+            }
         </select>
     </div>
     <div class="form-group">

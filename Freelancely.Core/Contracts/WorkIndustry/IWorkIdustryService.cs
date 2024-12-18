@@ -1,4 +1,5 @@
-﻿using Freelancely.Core.Models.WorkIndustry;
+﻿using Freelancely.Core.Models.Post;
+using Freelancely.Core.Models.WorkIndustry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Freelancely.Core.Contracts.WorkIndustry
     {
         Task<bool> WorkIndustryExists(string name);
 
-        Task<IEnumerable<string>> GetWorkIndustryNames();
+        Task<IEnumerable<PostWorkIndustriesServiceModel>> GetWorkIndustries();
 
         Task CreateWorkIndustryAsync(WorkIndustryFormModel model); 
 
