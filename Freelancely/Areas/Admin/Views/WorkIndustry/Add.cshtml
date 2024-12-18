@@ -1,0 +1,24 @@
+﻿@model Freelancely.Core.Models.WorkIndustry.WorkIndustryFormModel;
+<h2 class="text-center">Add work industry</h2>
+
+<div class="justify-content-center">
+    @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"] != null)
+    {
+        <div class="alert alert-danger" role="alert"> @ViewData.ModelState["Error"].Errors.First().ErrorMessage </div>
+    }
+    <form method="post">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Work Industry Name</label>
+            <input asp-for="Name" class="form-control" id="nameInput">
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Description</label>
+            <textarea asp-for="Description" type="text" class="form-control id="descriptionInput" rows="3"></textarea>
+            <span asp-validation-for="Description"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Add</button>
+        </div>
+    </form>
+</div>

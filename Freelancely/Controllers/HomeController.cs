@@ -1,6 +1,7 @@
 using Freelancely.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using static Freelancely.Web.Areas.Admin.AdminConstants;
 
 namespace Freelancely.Controllers
 {
@@ -15,10 +16,15 @@ namespace Freelancely.Controllers
 
         public IActionResult Index()
         {
+            if (User.IsInRole(AdminRoleName))
+            {
+                return RedirectToAction("Index", "Home", new { area = "Admin"});
+            }
+
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }

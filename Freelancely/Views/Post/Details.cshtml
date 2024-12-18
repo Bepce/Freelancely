@@ -1,0 +1,43 @@
+﻿@model PostIndexServiceModel
+@inject IPostService postService
+
+@{
+    ViewData["Title"] = "Posts";
+}
+<div style="max-width: fit-content; margin-left: auto; margin-right:auto">
+    <div class="card" style="width: stretch">
+        <div class="card-body">
+            <h5 class="card-title">@Model.PostTitle</h5>
+            <h6 class="card-subtitle">@Model.PostUserName</h6>
+            <p class="card-text">@Model.PostBody</p>
+            <p class="card-text;">@Model.Price$ per hr.</p>
+        </div>
+        <div class="m-lg-auto">
+            @if (await postService.IsCurrentUserPostOwnerAsync(Model.Id, User.GetId()))
+            {
+                <a asp-controller="Post" asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-outline-dark">Edit</a>
+                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+
+            }
+            <a href="javascript:window.history.back();" type="button" class="btn btn-outline-dark">Back</a>
+        </div>
+    </div>
+</div>
+
+<!--Delete confirmation modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="model-title">Please confirm the action.</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this post?</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id" type="button" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
