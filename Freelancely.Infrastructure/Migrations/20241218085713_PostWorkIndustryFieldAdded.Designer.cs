@@ -4,6 +4,7 @@ using Freelancely.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelancely.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241218085713_PostWorkIndustryFieldAdded")]
+    partial class PostWorkIndustryFieldAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +57,7 @@ namespace Freelancely.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("WorkIndustryId")
+                    b.Property<int?>("WorkIndustryId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -245,15 +248,15 @@ namespace Freelancely.Infrastructure.Migrations
                         {
                             Id = "2680690b-1683-45cb-8a99-cf0f9a9258aa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ffc26cd7-9c24-47e3-9cb1-0c32eb4b013c",
+                            ConcurrencyStamp = "bbe9f84c-710f-4652-b04f-bd5a8e0b61b3",
                             Email = "first@free.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "first@free.com",
                             NormalizedUserName = "first@free.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPo2RRfyOCgGvMfJ6SEY9xxJ7oqYFqQdmDzyWYz9N6jHOaqq0i+lfDeS8QlGgHtWDA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOHx10J+c/9vmK+gZFkSj33PU6iLg29BEtke8QjjAMtUBrDEYdsqxzydFdNjufyAtg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bc527dcb-b187-432e-bd2e-875099caaa25",
+                            SecurityStamp = "b82f1afe-eeec-40ba-ba5d-bd6bb617213a",
                             TwoFactorEnabled = false,
                             UserName = "first@free.com"
                         });
@@ -355,8 +358,7 @@ namespace Freelancely.Infrastructure.Migrations
                     b.HasOne("Freelancely.Infrastructure.Data.Models.WorkIndustry", "WorkIndustry")
                         .WithMany("Posts")
                         .HasForeignKey("WorkIndustryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
 

@@ -1,5 +1,6 @@
 ﻿using Freelancely.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,13 +44,19 @@ namespace Freelancely.Infrastructure.Data.SeedData
 
         private void SeedPost()
         {
+            var firstPostDate = new DateTime(2024, 9, 20, 8, 10, 2);
+            var secondPostDate = new DateTime(2024, 10, 5, 16, 32, 8);
+            var thirdPostDate = new DateTime(2024, 1, 8, 13, 3, 43);
+
             FirstPost = new Post()
             {
                 Id = 1,
                 Title = "Test",
                 Description = "This is a test",
                 PricePerHour = 20,
-                UserId = FirstUser.Id,
+                PostCreationDate = firstPostDate.ToString(),
+                WorkIndustryId = 1,
+                UserId = FirstUser.Id
             };
 
             SecoundPost = new Post()
@@ -58,7 +65,9 @@ namespace Freelancely.Infrastructure.Data.SeedData
                 Title = "Test2",
                 Description = "This is 2nd a test",
                 PricePerHour = 30,
-                UserId = FirstUser.Id,
+                PostCreationDate = secondPostDate.ToString(),
+                WorkIndustryId = 1,
+                UserId = FirstUser.Id
             };
 
             ThirdPost = new Post()
@@ -67,7 +76,9 @@ namespace Freelancely.Infrastructure.Data.SeedData
                 Title = "Photographer",
                 Description = "Photographer looking for work in Sofia, Bulgaria",
                 PricePerHour = 50,
-                UserId = FirstUser.Id,
+                PostCreationDate = thirdPostDate.ToString(),
+                WorkIndustryId = 1,
+                UserId = FirstUser.Id
             };
         }
     }

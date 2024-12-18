@@ -11,6 +11,8 @@ namespace Freelancely.Core.Contracts.WorkIndustry
     {
         Task<bool> WorkIndustryExists(string name);
 
+        Task<IEnumerable<string>> GetWorkIndustryNames();
+
         Task CreateWorkIndustryAsync(WorkIndustryFormModel model); 
 
         Task UpdateWorkIndustry(WorkIndustryFormModel model, int id);

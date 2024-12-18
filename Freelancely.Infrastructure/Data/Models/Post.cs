@@ -24,12 +24,22 @@ namespace Freelancely.Infrastructure.Data.Models
         public decimal PricePerHour { get; set; }
 
         [Required]
+        public bool IsDeleted { get; set; } = false;
+
+        [Required]
+        public int WorkIndustryId { get; set; }
+
+        [Required]
+        public string PostCreationDate { get; set; } = DateTime.UtcNow.ToString();
+
+        [Required]
         public string UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]
         public IdentityUser User { get; set; } = null!;
 
-        [Required]
-        public bool IsDeleted { get; set; } = false;
+        [ForeignKey(nameof(WorkIndustryId))]
+        public WorkIndustry WorkIndustry { get; set; } = null!;
+        
     }
 }

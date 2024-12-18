@@ -22,9 +22,16 @@ namespace Freelancely.Core.Services
                 Description = model.Description,
             };
             
-
             await _repository.AddAsync(workIndustry);
             await _repository.SaveChagnesAsync();
+        }
+
+        public async Task<IEnumerable<string>> GetWorkIndustryNames()
+        {
+            return await _repository
+                .All<WorkIndustry>()
+                .Select(x => x.Name)
+                .ToListAsync();
         }
 
         public Task UpdateWorkIndustry(WorkIndustryFormModel model, int id)
@@ -36,7 +43,7 @@ namespace Freelancely.Core.Services
         {
             return await _repository
                 .AllReadOnly<WorkIndustry>()
-                .AnyAsync(wi  => wi.Name == name);
+                .AnyAsync(x  => x.Name == name);
         }
     }
 }

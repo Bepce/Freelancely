@@ -16,5 +16,7 @@ namespace Freelancely.Infrastructure.Data.Models
         [MaxLength(WorkIndustryDescriptionMaxLength)]
         public string Description { get; set; }
 
+        public IEnumerable<Post> Posts { get; set; }
+
     }
 }

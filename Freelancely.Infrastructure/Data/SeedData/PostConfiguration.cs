@@ -13,6 +13,12 @@ namespace Freelancely.Infrastructure.Data.SeedData
     {
         public void Configure(EntityTypeBuilder<Post> builder)
         {
+            builder
+                .HasOne(p => p.WorkIndustry)
+                .WithMany(wi => wi.Posts)
+                .HasForeignKey(p => p.WorkIndustryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             var data = new DataSeeder();
 
             builder.HasData(new Post[] { data.FirstPost, data.SecoundPost, data.ThirdPost });

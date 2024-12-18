@@ -15,6 +15,9 @@ namespace Freelancely.Core.Models.Post
         public string Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = RequiredMessage)]
+        public int WorkIndustryId { get; set; }
+
+        [Required(ErrorMessage = RequiredMessage)]
         [Range(typeof(decimal), PostPriceMinValue, PostPriceMaxValue, ConvertValueInInvariantCulture = true, ErrorMessage = PriceErrorMessage)]
         public decimal Price { get; set; }
     }

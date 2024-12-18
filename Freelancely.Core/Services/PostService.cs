@@ -23,6 +23,8 @@ namespace Freelancely.Core.Services
                 Title = model.Title,
                 Description = model.Description,
                 PricePerHour = model.Price,
+                PostCreationDate = DateTime.UtcNow.ToString(),
+                WorkIndustryId = model.WorkIndustryId,
                 UserId = userId
             };
 
@@ -64,7 +66,7 @@ namespace Freelancely.Core.Services
                     Id = p.Id,
                     PostTitle = p.Title,
                     PostBody = p.Description,
-                    Price = p.PricePerHour,
+                    Price = p.PricePerHour,                   
                     PostUserName = p.User.UserName
                 })
                 .ToListAsync();
@@ -96,6 +98,7 @@ namespace Freelancely.Core.Services
                 post.Title = model.Title;
                 post.Description = model.Description;
                 post.PricePerHour = model.Price;
+                post.WorkIndustryId = model.WorkIndustryId;
 
                 await _repository.SaveChagnesAsync();
             }
